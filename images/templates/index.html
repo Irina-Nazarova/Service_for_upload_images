@@ -3,9 +3,11 @@
 {% if set_images.count == 0 %}
     {{img_not_found}}
 {% else %}
+    <ul>
     {% for image in set_images %}
-        {{ image }}
+        <li><a href="{% url 'image_edit' image.id %}">{{ image }}</a></li>
     {% endfor %}
+    </ul>
 {% endif %}
 
 </p><a href="{% url 'image_create' %}">{{img_add}}</a></p>
