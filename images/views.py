@@ -52,6 +52,7 @@ def image_create(request):
 
 
 def image_edit(request, id):
+    back_list = "Назад к списку"
     instance = get_object_or_404(Image, id=id)
 
     if instance.width or instance.height:
@@ -73,5 +74,6 @@ def image_edit(request, id):
             "form": form,
             "image": resize_image,
             "instance": instance,
+            "back_list": back_list,
         },
     )
