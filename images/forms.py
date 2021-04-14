@@ -7,8 +7,14 @@ from .utils import fetch_image
 
 
 class ImageCreate(forms.Form):
-    image_link = forms.URLField(label="Ссылка", required=False,)
-    image_file = forms.ImageField(label="Файл", required=False,)
+    image_link = forms.URLField(
+        label="Ссылка",
+        required=False,
+    )
+    image_file = forms.ImageField(
+        label="Файл",
+        required=False,
+    )
 
     def clean(self):
         """
@@ -18,14 +24,12 @@ class ImageCreate(forms.Form):
         - Если указан только url,
         - Скачиваем изображение, присваивая его в img_file
         """
-        # Родительский метод super().clean() вернет self.cleaned_data
+
         clean_data = super().clean()
 
-         # Получаем из словаря cleaned_data нужные поля
         img_link = clean_data.get("image_link")
         img_file = clean_data.get("image_file")
 
-        # Проводим собственную валидацию
         if img_link and img_file:
             raise ValidationError("Заполните только одно поле.")
 
@@ -33,7 +37,6 @@ class ImageCreate(forms.Form):
             raise ValidationError("А кто поле будет заполнять, Пушкин?")
 
         elif img_link:
-            # Если присутствует url в финальный словарь cleaned_data помещаем его в image_file
             img_file = fetch_image(img_link)
             clean_data["image_file"] = img_file
 

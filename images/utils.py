@@ -22,5 +22,5 @@ def fetch_image(link):
         PilImage.open(content)
 
     except Exception:
-        raise ValidationError("По url не удалось найти изображение")
+        raise ValidationError("По url не удалось найти изображение.")
     return content

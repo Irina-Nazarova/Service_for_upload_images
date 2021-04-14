@@ -32,7 +32,7 @@ def image_create(request):
             file = form.cleaned_data.get("image_file")
             # Если image_link существует, сплитим, берем последний элемент - имя понадобится для сохранения в БД
             if link:
-                img_name = link.split("/")[-1]  # сплитит через запятую и берем последнее значение
+                img_name = link.split("/")[-1]
             else:
                 img_name = file.name
             # создаем объект класса иммидж
