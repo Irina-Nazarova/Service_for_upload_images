@@ -12,8 +12,7 @@ The project can be deployed in three Docker containers using docker-compose.
    
 ```bash
   SECRET_KEY=<укажите secret_key>
-  IS_DEV=false
-  SERVER_HOST=<ваш-ip>
+  DEBUG_VALUE='FALSE'
 ```
 * Generation SECRET_KEY - you can get by [ссылке](https://djecrety.ir/).
      
