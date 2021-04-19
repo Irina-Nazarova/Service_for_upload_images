@@ -2,7 +2,7 @@ from django.core.files.uploadedfile import SimpleUploadedFile
 from django.test import Client, TestCase
 
 
-class TestImage(TestCase):
+class TestData(TestCase):
     @classmethod
     def setUpTestData(cls):
         cls.client = Client()
@@ -21,7 +21,35 @@ class TestImage(TestCase):
         cls.invalid_link = "https://www.google.com/"
 
 
-class ImageCreateErrors(TestImage):
+class StaticURLTests(TestData):
+    def test_index_page(self):
+        response = self.client.get('/')
+        self.assertEqual(response.status_code, 200)
+
+    def test_create_page(self):
+        response = self.client.get('/create/')
+        self.assertEqual(response.status_code, 200)
+
+
+class TemplatesURLTests(TestData):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.client.post("/create/", {"image_file": cls.file}, follow=True)
+
+    def test_urls_correct_template(self):
+        templates_url_names = {
+            'index.html': '/',
+            'image_create.html': '/create/',
+            'image_edit.html': '/edit/1/',
+        }
+        for template, adress in templates_url_names.items():
+            with self.subTest(adress=adress):
+                response = self.client.get(adress)
+                self.assertTemplateUsed(response, template)
+
+
+class ImageCreateErrors(TestData):
     def test_upload_with_invalid_link(self):
         response = self.client.post(
             "/create/", {"image_link": self.invalid_link}
@@ -39,7 +67,7 @@ class ImageCreateErrors(TestImage):
         self.assertContains(response, "Заполните только одно поле.")
 
 
-class ImageCreate(TestImage):
+class ImageCreate(TestData):
     def test_upload_image_from_link(self):
         response = self.client.post("/create/", {"image_link": self.link})
         self.assertEqual(response.status_code, 302)
@@ -49,7 +77,7 @@ class ImageCreate(TestImage):
         self.assertEqual(response.status_code, 302)
 
 
-class ImageEdit(TestImage):
+class ImageEdit(TestData):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
