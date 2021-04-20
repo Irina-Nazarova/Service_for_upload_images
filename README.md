@@ -5,7 +5,7 @@ The project can be deployed in three Docker containers using docker-compose.
 
 ![](schema/schema.PNG)
 
-### Как развернуть проект
+### How to deploy a project
 
 * Clone the repository to your local machine
 * Create file .env and specify parameters
