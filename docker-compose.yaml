@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   web:
-    image: irinanazarova/images:v2.04.2021
+    image: irinanazarova/images:v3.04.2021
     restart: always
     volumes:
       - ./static:/code/static
