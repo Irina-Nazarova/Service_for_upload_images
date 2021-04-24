@@ -1,7 +1,7 @@
 # Service_for_upload_images
 
  Service_for_upload_images - a service that allows you to download images from a user's computer, or from a link, and then resize them.
-The project can be deployed in three Docker containers using docker-compose.
+The project can be deployed using docker-compose.
 
 ![](schema/schema.PNG)
 
@@ -18,18 +18,24 @@ The project can be deployed in three Docker containers using docker-compose.
      
 ### Starting docker-compose
 ```
-docker-compose up --build
+docker-compose up 
 ```
+```
+docker ps
+```
+
 ### First Start
 **For the first launch**, for project functionality, go inside to the container:
+
 ```
-docker exec -t -i <WEB CONTAINER ID> bash
+docker exec -it <WEB CONTAINER ID> bash
 ```
-**Make migrations**
+
 ```
-python manage.py migrate
+python manage.py collectstatic
 ```
-**To create a superuser**
+
+**To create a superuser:**
 ```
 python manage.py createsuperuser
 ```
