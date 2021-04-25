@@ -23,11 +23,11 @@ class TestData(TestCase):
 
 class StaticURLTests(TestData):
     def test_index_page(self):
-        response = self.client.get('/')
+        response = self.client.get("/")
         self.assertEqual(response.status_code, 200)
 
     def test_create_page(self):
-        response = self.client.get('/create/')
+        response = self.client.get("/create/")
         self.assertEqual(response.status_code, 200)
 
 
@@ -39,15 +39,11 @@ class TemplatesURLTests(TestData):
 
     def test_urls_correct_template(self):
         templates_url_names = {
-            'index.html': '/',
-            'image_create.html': '/create/',
-            'image_edit.html': '/edit/1/',
+            "index.html": "/",
+            "image_create.html": "/create/",
+            "image_edit.html": "/edit/1/",
         }
         for template, adress in templates_url_names.items():
             with self.subTest(adress=adress):
                 response = self.client.get(adress)
                 self.assertTemplateUsed(response, template)
-
-
-
-

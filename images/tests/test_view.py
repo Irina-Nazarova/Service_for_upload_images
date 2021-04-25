@@ -68,9 +68,9 @@ class ImagesPagesTests(TestData):
 
     def test_pages_use_correct_template(self):
         templates_pages_names = {
-            'index.html': reverse('index'),
-            'image_create.html': reverse('image_create'),
-            'image_edit.html': reverse('image_edit', kwargs={'id': 1}),
+            "index.html": reverse("index"),
+            "image_create.html": reverse("image_create"),
+            "image_edit.html": reverse("image_edit", kwargs={"id": 1}),
         }
         # Проверяем, что при обращении к name вызывается
         # соответствующий HTML-шаблон
