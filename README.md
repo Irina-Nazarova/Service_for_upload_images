@@ -1,7 +1,7 @@
 # Service_for_upload_images
 
  Service_for_upload_images - a service that allows you to download images from a user's computer, or from a link, and then resize them.
-The project can be deployed using docker-compose.
+The project can be deployed using docker-compose.(test task)
 
 ![](schema/schema.PNG)
 
